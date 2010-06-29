@@ -2,7 +2,5 @@
 *.swp
 *~
 */cache/*
-index.html
 stylesheets
 */logs/*.php
-*/css/*
