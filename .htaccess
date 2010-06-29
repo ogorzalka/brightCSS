@@ -1,0 +1,6 @@
+<IfModule mod_rewrite.c> 
+    RewriteEngine   on
+    RewriteCond     %{REQUEST_FILENAME}     -f
+    RewriteCond     %{REQUEST_URI}          \.less$
+    RewriteRule     ^(.+)$                  less/index.php?f=%{REQUEST_URI}&%{QUERY_STRING}
+</IfModule> 
