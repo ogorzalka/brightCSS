@@ -1,0 +1,199 @@
+/**
+ * This defines the layout. It creates mixins and constants we
+ * can use, as well as generating a png to use as a grid overlay 
+ */
+
+@page_width: 960px;
+@gutter_width: 10px;
+@column_count: 12;
+
+body {
+	background: cmyk(75,57,24,5);
+	color: #333;
+	font-size: 11px;
+	padding: 20px 0 40px;
+}
+
+a
+{
+	color: #fff;
+	text-decoration: none;
+	
+	:hover {
+   	text-decoration: underline;
+   }
+}
+
+h1 {
+	font-family: Georgia, serif;
+	font-weight: normal;
+	text-align: center;
+}
+
+h2 {
+	padding: @gutter_width * 2 0 0;
+	text-align: center;
+}
+
+p {
+	border: 1px solid #666;
+	overflow: hidden;
+	padding: @gutter_width 0;
+	text-align: center;
+}
+
+.container_12 {
+   @container;
+   background-color: #fff;
+	margin-bottom: @gutter_width * 2;
+   
+   .prefix_1 {
+      @prepend(1);
+   }
+   
+   .prefix_2 {
+      @prepend(2);
+   }
+   
+   .prefix_3 {
+      @prepend(3);
+   }
+   
+   .prefix_4 {
+      @prepend(4);
+   }
+   
+   .prefix_5 {
+      @prepend(5);
+   }
+   
+   .prefix_6 {
+      @prepend(6);
+   }
+   
+   .prefix_7 {
+      @prepend(7);
+   }
+   
+   .prefix_8 {
+      @prepend(8);
+   }
+      
+   .prefix_9 {
+      @prepend(9);
+   }
+      
+   .prefix_10 {
+      @prepend(10);
+   }
+      
+   .prefix_11 {
+      @prepend(11);
+   }
+
+
+   .suffix_1 {
+      @append(1);
+   }
+   
+   .suffix_2 {
+      @append(2);
+   }
+   
+   .suffix_3 {
+      @append(3);
+   }
+   
+   .suffix_4 {
+      @append(4);
+   }
+   
+   .suffix_5 {
+      @append(5);
+   }
+   
+   .suffix_6 {
+      @append(6);
+   }
+   
+   .suffix_7 {
+      @append(7);
+   }
+   
+   .suffix_8 {
+      @append(8);
+   }
+      
+   .suffix_9 {
+      @append(9);
+   }
+      
+   .suffix_10 {
+      @append(10);
+   }
+      
+   .suffix_11 {
+      @append(11);
+   }
+
+
+   .grid_1 {
+      @grid(1);
+   }
+   
+   .grid_2 {
+      @grid(2);
+   }
+   
+   .grid_3 {
+      @grid(3);
+   }
+   
+   .grid_4 {
+      @grid(4);
+   }
+   
+   .grid_5 {
+      @grid(5);
+   }
+   
+   .grid_6 {
+      @grid(6);
+   }
+   
+   .grid_7 {
+      @grid(7);
+   }
+   
+   .grid_8 {
+      @grid(8);
+   }
+      
+   .grid_9 {
+      @grid(9);
+   }
+      
+   .grid_10 {
+      @grid(11);
+   }
+      
+   .grid_11 {
+      @grid(11);
+   }
+   
+   .grid_12 {
+      @grid(12);
+   }
+   
+   .alpha {
+      @first;
+   }
+   
+   .omega {
+      @last;
+   }
+   
+   .clear {
+      @clear;
+   }
+}

@@ -1,0 +1,87 @@
+/*
+	960 Grid System ~ Core CSS.
+	Learn more ~ http://960.gs/
+	Adapted by Olivier Gorzalka for brightCSS
+
+	Licensed under GPL and MIT.
+*/
+
+/* `Containers
+----------------------------------------------------------------------------------------------------*/
+
+@column_width = (@page_width / @column_count - @gutter_width * 2);
+
+@container() {
+	margin-left: auto;
+	margin-right: auto;
+	width: @page_width;
+}
+
+/* `Grid >> Global
+----------------------------------------------------------------------------------------------------*/
+
+@grid(@n:0) {
+	float: left;
+	display: inline;
+	margin-left: 10px;
+	margin-right: 10px;
+	width: ( ( @n - 1 ) * @gutter_width * 2 + (@n * @column_width));
+}
+
+/* `Grid >> Children (Alpha ~ First, Omega ~ Last)
+----------------------------------------------------------------------------------------------------*/
+
+@first {
+	margin-left: 0;
+}
+
+@last {
+	margin-right: 0;
+}
+
+
+/* Add these to a column to append empty cols. */
+@append(@n:0) {
+  padding-right: (@n * ( @column_width + @gutter_width * 2 ) );
+}
+
+/* Add these to a column to prepend empty cols. */
+@prepend(@n:0) {
+  padding-left:  (@n * ( @column_width + @gutter_width * 2 ) );
+}
+
+/* `Clear Floated Elements
+----------------------------------------------------------------------------------------------------*/
+
+/* http://sonspring.com/journal/clearing-floats */
+
+@clear() {
+	clear: both;
+	display: block;
+	overflow: hidden;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+}
+
+/* Clearing floats without extra markup
+   Based on How To Clear Floats Without Structural Markup by PiE
+   [http://www.positioniseverything.net/easyclearing.html] */
+
+@clearfix() {
+	display:block;
+	zoom:1;
+	
+	:after {
+		clear: both;
+		content: '.';
+		display: block;
+		visibility: hidden;
+		height: 0;
+	}
+}
+
+/* Regular clearing
+   apply to column that should drop below previous ones. */
+
+@clear() { clear:both; }
