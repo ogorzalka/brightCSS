@@ -36,7 +36,6 @@ class Mixins
 		{
 			if(is_dir($file) || Less::get_file_extension($file) != Less::$config[Less::$parser_name]['extension'])
 				continue;
-
 			Less::$css->string = file_get_contents($file)."\n".Less::$css->string;
 		}
 	}

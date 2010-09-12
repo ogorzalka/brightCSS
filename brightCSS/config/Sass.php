@@ -1,2 +1,2 @@
 <?php
-$config['extension'] = 'sass';
+$config['extension'] = array('sass','scss');

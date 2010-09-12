@@ -25,22 +25,25 @@ class Sass
 	 */
 	public static function process()
 	{
-		require('sass/SassParser.php');
+		require('sass/sass/SassParser.php');
+		
 		
 		$options = array(
-		  'file' => Less::$css->file,
-		  'cache' => false,
-		  'style' => 'expanded',
-		  'property_syntax' => 'new',
-		  'always_update' => true
+			'filename'			 => array(
+				'dirname' => str_replace(basename(Less::$css->file),'',Less::$css->file),
+				'basename' => basename(Less::$css->file)
+			),
+			'debug_info'		 => false,
+			'line_numbers'	 => false,
+			'line'					 => 1,
+			'cache' => false,
+			'syntax' => 'scss',
+			'style' => 'nested'
 		);
-		
 		$sass = new SassParser($options);
 
 		try {
-		  //$sass->toCss(Less::$css->string,false);
-		  Less::$css->string = $sass->toCss(Less::$css->string,false);
-
+		  Less::$css->string = $sass->toCss(Less::$css->string, false);
 		} catch (exception $ex) {
 		    Less::error('<b>Syntax Error</b> - '.$ex->getMessage());
 		}

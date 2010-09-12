@@ -171,11 +171,10 @@ class Less extends bCSS_Utils
 			
 			# The final, combined CSS file in the cache
 			foreach($files as $file) {
-			  foreach(self::$parser_name as $parser) {
-			    if (is_array(self::$parser_name) && self::get_file_extension($file) == Less::$config[self::$parser_name[$parser]]['extension']) {
+			  foreach((array)self::$parser_name as $parser) {
+			  	if (in_array(self::get_file_extension($file),(array)(Less::$config[$parser]['extension']))) {
 			      self::$parser_name = $parser;
-			    } else if (self::get_file_extension($file) == 'css') {
-			      self::$parser_name = 'CSS';
+			      Less::$config[self::$parser_name]['extension'] = self::get_file_extension($file);
 			    }
 			  }
 			}

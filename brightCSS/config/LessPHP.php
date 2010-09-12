@@ -1,2 +1,2 @@
 <?php
-$config['extension'] = 'less';
+$config['extension'] = array('less');

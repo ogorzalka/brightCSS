@@ -1,2 +1,2 @@
 <?php
-$config['extension'] = 'css';
+$config['extension'] = array('css');
