@@ -1,0 +1,195 @@
+/**
+ * This defines the layout. It creates mixins and constants we
+ * can use, as well as generating a png to use as a grid overlay 
+ */
+
+body {
+	background: cmyk(75,57,24,5);
+	color: #333;
+	font-size: 11px;
+	padding: 20px 0 40px;
+}
+
+a {
+	color: #fff;
+	text-decoration: none;
+	
+	:hover {
+   	text-decoration: underline;
+  }
+}
+
+h1 {
+	font-family: Georgia, serif;
+	font-weight: normal;
+	text-align: center;
+}
+
+h2 {
+	padding: $gutter_width * 2 0 0;
+	text-align: center;
+}
+
+p {
+	border: 1px solid #666;
+	overflow: hidden;
+	padding: $gutter_width 0;
+	text-align: center;
+}
+
+.container_12 {
+   @include container;
+   background-color: #fff;
+   margin-bottom: $gutter_width * 2;
+   border-radius: 15px;
+   
+   .prefix_1 {
+      @include prepend(1);
+   }
+   
+   .prefix_2 {
+      @include prepend(2);
+   }
+   
+   .prefix_3 {
+      @include prepend(3);
+   }
+   
+   .prefix_4 {
+      @include prepend(4);
+   }
+   
+   .prefix_5 {
+      @include prepend(5);
+   }
+   
+   .prefix_6 {
+      @include prepend(6);
+   }
+   
+   .prefix_7 {
+      @include prepend(7);
+   }
+   
+   .prefix_8 {
+      @include prepend(8);
+   }
+      
+   .prefix_9 {
+      @include prepend(9);
+   }
+      
+   .prefix_10 {
+      @include prepend(10);
+   }
+      
+   .prefix_11 {
+      @include prepend(11);
+   }
+
+
+   .suffix_1 {
+      @include append(1);
+   }
+   
+   .suffix_2 {
+      @include append(2);
+   }
+   
+   .suffix_3 {
+      @include append(3);
+   }
+   
+   .suffix_4 {
+      @include append(4);
+   }
+   
+   .suffix_5 {
+      @include append(5);
+   }
+   
+   .suffix_6 {
+      @include append(6);
+   }
+   
+   .suffix_7 {
+      @include append(7);
+   }
+   
+   .suffix_8 {
+      @include append(8);
+   }
+      
+   .suffix_9 {
+      @include append(9);
+   }
+      
+   .suffix_10 {
+      @include append(10);
+   }
+      
+   .suffix_11 {
+      @include append(11);
+   }
+
+
+   .grid_1 {
+      @include grid(1);
+   }
+   
+   .grid_2 {
+      @include grid(2);
+   }
+   
+   .grid_3 {
+      @include grid(3);
+   }
+   
+   .grid_4 {
+      @include grid(4);
+   }
+   
+   .grid_5 {
+      @include grid(5);
+   }
+   
+   .grid_6 {
+      @include grid(6);
+   }
+   
+   .grid_7 {
+      @include grid(7);
+   }
+   
+   .grid_8 {
+      @include grid(8);
+   }
+      
+   .grid_9 {
+      @include grid(9);
+   }
+      
+   .grid_10 {
+      @include grid(10);
+   }
+      
+   .grid_11 {
+      @include grid(11);
+   }
+   
+   .grid_12 {
+      @include grid(12);
+   }
+   
+   .alpha {
+      @include first;
+   }
+   
+   .omega {
+      @include last;
+   }
+   
+   .clear {
+      @include clear;
+   }
+}

@@ -1,0 +1,88 @@
+/*
+	960 Grid System ~ Core CSS.
+	Learn more ~ http://960.gs/
+	Adapted by Olivier Gorzalka for brightCSS
+
+	Licensed under GPL and MIT.
+*/
+
+/* `Containers
+----------------------------------------------------------------------------------------------------*/
+
+$gutter_width = 10px;
+$column_count = 12;
+$page_width = 960px;
+
+@mixin container {
+	margin-left: auto;
+	margin-right: auto;
+	width: $page_width;
+}
+
+$column_width = ($page_width / $column_count - $gutter_width * 2);
+
+/* `Grid >> Global
+----------------------------------------------------------------------------------------------------*/
+
+@mixin grid($n) {
+	float: left;
+	display: inline;
+	margin-left: 10px;
+	margin-right: 10px;
+	width: (($n - 1)*$gutter_width*2+($n*$column_width));
+}
+
+/* `Grid >> Children (Alpha ~ First, Omega ~ Last)
+----------------------------------------------------------------------------------------------------*/
+
+@mixin first {
+	margin-left: 0;
+}
+
+@mixin last {
+	margin-right: 0;
+}
+
+
+/* Add these to a column to append empty cols. */
+@mixin append($n) {
+  padding-right: ($n * ( $column_width + $gutter_width * 2 ) );
+}
+
+/* Add these to a column to prepend empty cols. */
+@mixin prepend($n) {
+  padding-left:  ($n * ( $column_width + $gutter_width * 2 ) );
+}
+
+
+
+/* `Clear Floated Elements
+----------------------------------------------------------------------------------------------------*/
+
+/* http://sonspring.com/journal/clearing-floats */
+
+@mixin clear {
+	clear: both;
+	display: block;
+	overflow: hidden;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+}
+
+/* Clearing floats without extra markup
+   Based on How To Clear Floats Without Structural Markup by PiE
+   [http://www.positioniseverything.net/easyclearing.html] */
+
+@mixin clearfix {
+	display:block;
+	zoom:1;
+	
+	&:after {
+		clear: both;
+		content: '.';
+		display: block;
+		visibility: hidden;
+		height: 0;
+	}
+}

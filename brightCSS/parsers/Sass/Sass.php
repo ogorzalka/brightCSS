@@ -26,18 +26,15 @@ class Sass
 	public static function process()
 	{
 		require('sass/sass/SassParser.php');
-		
-		
 		$options = array(
-			'filename'			 => array(
-				'dirname' => str_replace(basename(Less::$css->file),'',Less::$css->file),
-				'basename' => basename(Less::$css->file)
-			),
-			'debug_info'		 => false,
+			'filename' => Less::$css->file,
+			'debug_info' => false,
 			'line_numbers'	 => false,
-			'line'					 => 1,
+			'vendor_properties' => true,
+			'property_syntax' => 'new',
+			'line' => 1,
 			'cache' => false,
-			'syntax' => 'scss',
+			'syntax' => Less::get_file_extension(Less::$css->file),
 			'style' => 'nested'
 		);
 		$sass = new SassParser($options);
