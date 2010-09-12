@@ -27,7 +27,8 @@ class LessPHP
 		require('lessphp/lessc.inc.php');
 		$lessc = new lessc();
 		try {
-		    Less::$css->string = $lessc->parse(Less::$css->string);
+			$options = array('importDir' => bCSS_Utils::fix_path(dirname(Less::$css->file)));
+		    Less::$css->string = $lessc->parse(Less::$css->string, $options);
 		} catch (exception $ex) {
 		    Less::error('<b>Syntax Error</b> - '.$ex->getMessage());
 		}

@@ -7,8 +7,10 @@
 @gutter_width: 10px;
 @column_count: 12;
 
+@import 'mixin';
+
 body {
-	background: cmyk(75,57,24,5);
+	@bgcolor;
 	color: #333;
 	font-size: 11px;
 	padding: 20px 0 40px;
@@ -45,8 +47,7 @@ p {
 .container_12 {
    @container;
    background-color: #fff;
-	margin-bottom: @gutter_width * 2;
-	border-radius: 15px;
+   margin-bottom: @gutter_width * 2;
    
    .prefix_1 {
       @prepend(1);

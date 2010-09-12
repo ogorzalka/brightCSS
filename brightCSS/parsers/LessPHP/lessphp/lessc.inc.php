@@ -192,7 +192,6 @@ class lessc {
 		// import statement
 		if ($this->import($url, $media)) {
 			if ($this->importDisabled) return "/* import is disabled */\n";
-
 			$full = $this->importDir.$url;
 			if ($this->fileExists($file = $full) || $this->fileExists($file = $full.'.less')) {
 				$this->addParsedFile($file);
@@ -1289,9 +1288,9 @@ class lessc {
 	}
 
 	// parse and compile buffer
-	function parse($str = null) {
+	function parse($str = null,$options = array()) {
 		if ($str) $this->buffer = $str;		
-
+		$this->importDir = $options['importDir'];
 		$this->env = array();
 		$this->expandStack = array();
 		$this->indentLevel = 0;
@@ -1335,7 +1334,7 @@ class lessc {
 			self::$operatorString = 
 				'('.implode('|', array_map(array($this, 'preg_quote'), array_keys(self::$precedence))).')';
 		}
-
+		
 		if ($fname) {
 			if (!is_file($fname)) {
 				throw new Exception('load error: failed to find '.$fname);
