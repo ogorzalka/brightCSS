@@ -1,0 +1,7 @@
+@gradient(@start: #000; @end: #ffffff) {
+    background: @start;
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(@start), to(@end));
+    background: -moz-linear-gradient(top, @start, @end);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='{@start}', endColorstr='{@end}', GradientType='0')";
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='{@start}', endColorstr='{@end}', GradientType='0');
+}

@@ -1,0 +1,16 @@
+/**
+* Opacity
+* 
+* Thanks to Chris Eppstein. Borrowed this one from Compass. 
+* Takes a number from 0 to 1.
+
+*/
+
+@opacity(@opacity : 1) {
+	@ie_opacity : @opacity * 100;
+	opacity: @opacity;
+	-moz-opacity: @opacity;
+	-khtml-opacity: @opacity;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity={@ie_opacity})";
+	filter: "alpha(opacity={@ie_opacity})";
+}

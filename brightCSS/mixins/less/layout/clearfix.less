@@ -1,0 +1,43 @@
+/**
+* Quick Clearfix
+*
+* Clears an element of its floated children. The quick way.
+*
+* @type Mixin
+*/
+@quick-clearfix
+{
+	@has-layout; /* For IE6, the overflow is enough for IE7@ */
+	overflow:hidden;
+}
+
+/* `Clear Floated Elements
+----------------------------------------------------------------------------------------------------*/
+
+/* http://sonspring.com/journal/clearing-floats */
+
+@clear {
+	clear: both;
+	display: block;
+	overflow: hidden;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+}
+
+/* Clearing floats without extra markup
+   Based on How To Clear Floats Without Structural Markup by PiE
+   [http://www.positioniseverything.net/easyclearing.html] */
+
+@clearfix {
+	display:block;
+	zoom:1;
+	
+	:after {
+		clear: both;
+		content: '.';
+		display: block;
+		visibility: hidden;
+		height: 0;
+	}
+}

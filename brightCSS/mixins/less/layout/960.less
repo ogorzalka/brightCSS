@@ -49,34 +49,3 @@
 @prepend(@n:0) {
   padding-left:  (@n * ( @column_width + @gutter_width * 2 ) );
 }
-
-/* `Clear Floated Elements
-----------------------------------------------------------------------------------------------------*/
-
-/* http://sonspring.com/journal/clearing-floats */
-
-@clear() {
-	clear: both;
-	display: block;
-	overflow: hidden;
-	visibility: hidden;
-	width: 0;
-	height: 0;
-}
-
-/* Clearing floats without extra markup
-   Based on How To Clear Floats Without Structural Markup by PiE
-   [http://www.positioniseverything.net/easyclearing.html] */
-
-@clearfix() {
-	display:block;
-	zoom:1;
-	
-	:after {
-		clear: both;
-		content: '.';
-		display: block;
-		visibility: hidden;
-		height: 0;
-	}
-}
