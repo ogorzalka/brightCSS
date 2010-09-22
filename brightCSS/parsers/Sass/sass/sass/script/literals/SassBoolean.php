@@ -1,5 +1,5 @@
 <?php
-/* SVN FILE: $Id: SassBoolean.php 106 2010-08-29 11:11:49Z chris.l.yates@gmail.com $ */
+/* SVN FILE: $Id: SassBoolean.php 118 2010-09-21 09:45:11Z chris.l.yates@gmail.com $ */
 /**
  * SassBoolean class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
@@ -28,7 +28,10 @@ class SassBoolean extends SassLiteral {
 	 * @return SassBoolean
 	 */
 	public function __construct($value) {
-		if ($value === 'true' || $value === 'false') {
+		if (is_bool($value)) {
+			$this->value = $value;
+		}
+		elseif ($value === 'true' || $value === 'false') {
 			$this->value = ($value === 'true' ? true : false);
 		}
 		else {

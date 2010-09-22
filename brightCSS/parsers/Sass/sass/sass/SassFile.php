@@ -1,5 +1,5 @@
 <?php
-/* SVN FILE: $Id: SassFile.php 112 2010-08-30 09:24:46Z chris.l.yates@gmail.com $ */
+/* SVN FILE: $Id: SassFile.php 118 2010-09-21 09:45:11Z chris.l.yates@gmail.com $ */
 /**
  * SassFile class file.
  * File handling utilites.
@@ -66,7 +66,7 @@ class SassFile {
 					$_filename = "$filename.{$parser->syntax}";
 				}
 				else {
-					$_filename = $filename.($parser->syntax === self::SASS ? self::SCSS : self::SASS);
+					$_filename = $filename.'.'.($parser->syntax === self::SASS ? self::SCSS : self::SASS);
 				}
 			}
 			else {
@@ -76,11 +76,8 @@ class SassFile {
 			if (file_exists($_filename)) {
 				return $_filename;
 			}
-			elseif (file_exists(dirname($parser->filename) . DIRECTORY_SEPARATOR . $_filename)) {
-				return dirname($parser->filename) . DIRECTORY_SEPARATOR . $_filename;
-			}
 
-			foreach ($parser->load_paths as $loadPath) {
+			foreach (array_merge(array(dirname($parser->filename)), $parser->load_paths) as $loadPath) {
 				$path = self::findFile($_filename, realpath($loadPath));
 				if ($path !== false) {
 					return $path;
@@ -100,19 +97,24 @@ class SassFile {
 
 	/**
 	 * Looks for the file recursively in the specified directory.
+	 * This will also look for _filename to handle Sass partials.
 	 * @param string filename to look for
 	 * @param string path to directory to look in and under
 	 * @return mixed string: full path to file if found, false if not
 	 */
 	public static function findFile($filename, $dir) {
-		if (file_exists($dir . DIRECTORY_SEPARATOR . $filename)) {
-			return $dir . DIRECTORY_SEPARATOR . $filename;
+		$partialname = dirname($filename).DIRECTORY_SEPARATOR.'_'.basename($filename);
+		
+		foreach (array($filename, $partialname) as $file) {		
+			if (file_exists($dir . DIRECTORY_SEPARATOR . $file)) {
+				return realpath($dir . DIRECTORY_SEPARATOR . $file);
+			}		
 		}
 
 		$files = array_slice(scandir($dir), 2);
 
 		foreach ($files as $file) {
-			if (is_dir($file)) {
+			if (is_dir($dir . DIRECTORY_SEPARATOR . $file)) {
 				$path = self::findFile($filename, $dir . DIRECTORY_SEPARATOR . $file);
 				if ($path !== false) {
 					return $path;

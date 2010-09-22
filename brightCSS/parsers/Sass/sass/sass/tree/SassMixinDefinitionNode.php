@@ -1,5 +1,5 @@
 <?php
-/* SVN FILE: $Id: SassMixinDefinitionNode.php 106 2010-08-29 11:11:49Z chris.l.yates@gmail.com $ */
+/* SVN FILE: $Id: SassMixinDefinitionNode.php 118 2010-09-21 09:45:11Z chris.l.yates@gmail.com $ */
 /**
  * SassMixinDefinitionNode class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
@@ -17,7 +17,7 @@
  */
 class SassMixinDefinitionNode extends SassNode {
 	const NODE_IDENTIFIER = '=';
-	const MATCH = '/^(=|@mixin) ([-\w]+)(?:\((.+?)\))?$/i';
+	const MATCH = '/^(=|@mixin\s+)([-\w]+)\s*(?:\((.+?)\))?\s*$/i';
 	const IDENTIFIER = 1;
 	const NAME = 2;
 	const ARGUMENTS = 3;
@@ -43,6 +43,9 @@ class SassMixinDefinitionNode extends SassNode {
 	 	}
 		parent::__construct($token);
 		preg_match(self::MATCH, $token->source, $matches);
+		if (empty($matches)) {
+			throw new SassMixinDefinitionNodeException('Invalid {what}', array('{what}'=>'Mixin'), $this);
+		}
 		$this->name = $matches[self::NAME];
 	  if (isset($matches[self::ARGUMENTS])) {
 		  foreach (explode(',', $matches[self::ARGUMENTS]) as $arg) {
@@ -66,6 +69,10 @@ class SassMixinDefinitionNode extends SassNode {
 		return array();
 	}
 
+	/**
+	 * Returns the arguments with default values for this mixin
+	 * @return array the arguments with default values for this mixin
+	 */
 	public function getArgs() {
 	  return $this->args;
 	}

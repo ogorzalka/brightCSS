@@ -1,5 +1,5 @@
 <?php
-/* SVN FILE: $Id: SassNestedRenderer.php 106 2010-08-29 11:11:49Z chris.l.yates@gmail.com $ */
+/* SVN FILE: $Id: SassNestedRenderer.php 118 2010-09-21 09:45:11Z chris.l.yates@gmail.com $ */
 /**
  * SassNestedRenderer class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
@@ -35,13 +35,7 @@ class SassNestedRenderer extends SassExpandedRenderer {
 	 * @return string the indent string for this SassNode
 	 */
 	protected function getIndent($node) {
-		$level = $node->level;
-		if (($node instanceof SassPropertyNode && $node->inNamespace()) ||
-				$node->parent instanceof SassMixinNode ||
-				$node->inSassScriptDirective()) {
-			$level--;
-		}
-		return str_repeat(self::INDENT, $level);
+		return str_repeat(self::INDENT, $node->level);
 	}
 
 	/**

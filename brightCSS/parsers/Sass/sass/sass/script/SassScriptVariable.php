@@ -18,7 +18,7 @@ class SassScriptVariable {
 	/**
 	 * Regex for matching and extracting Variables
 	 */
-	const MATCH = '/^(?<!\\\\)[\$]([\w-]+)/';
+	const MATCH = '/^(?<!\\\\)(?(?!!important\b)[!\$]([\w-]+))/';
 	
 	/**
 	 * @var string name of variable
@@ -40,20 +40,7 @@ class SassScriptVariable {
 	 * @return SassLiteral the SassScript object for this variable
 	 */
 	public function evaluate($context) {
-		$value = $context->getVariable($this->name);
-		
-		if ((SassBoolean::isa($value)) !== false) {
-			return new SassBoolean($value);
-		}
-		elseif ((SassNumber::isa($value)) !== false) {
-			return new SassNumber($value);
-		}
-		elseif ((SassColour::isa($value)) !== false) {
-			return new SassColour($value);
-		}
-		else {
-			return new SassString($value);
-		}
+		return $context->getVariable($this->name);
 	}
 
 	/**
@@ -63,6 +50,8 @@ class SassScriptVariable {
 	 * @return mixed match at the start of the string or false if no match
 	 */
 	public static function isa($subject) {
-		return (preg_match(self::MATCH, $subject, $matches) ? $matches[0] : false);
+		// we need to do the check as preg_match returns a count of 1 if
+		// subject == '!important'; the match being an empty match
+		return (preg_match(self::MATCH, $subject, $matches) ? (empty($matches[0]) ? false : $matches[0]) : false);
 	}
 }

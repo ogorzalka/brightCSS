@@ -1,5 +1,5 @@
 <?php
-/* SVN FILE: $Id: SassColour.php 113 2010-09-01 12:04:59Z chris.l.yates@gmail.com $ */
+/* SVN FILE: $Id: SassColour.php 118 2010-09-21 09:45:11Z chris.l.yates@gmail.com $ */
 /**
  * SassColour class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
@@ -422,7 +422,7 @@ class SassColour extends SassLiteral {
 	 * @param mixed value (SassColour or SassNumber) to divide by
 	 * @return sassColour the colour result
 	 */
-	public function op_divide_by($other) {
+	public function op_div($other) {
 		if ($other instanceof SassNumber) {
 			if (!$other->isUnitless()) {
 				throw new SassColourException('{what} must be a {type}', array('{what}'=>Phamlp::t('sass', 'Number'), '{type}'=>Phamlp::t('sass', 'unitless number')), SassScriptParser::$context->node);
@@ -825,6 +825,7 @@ class SassColour extends SassLiteral {
 		switch($max) {
 			case $min:
 				$h = 0;
+				break;
 			case $rgb[0]:
 				$h = (($rgb[1] - $rgb[2])/$c) % 6;
 				break;

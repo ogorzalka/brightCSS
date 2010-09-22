@@ -6,7 +6,6 @@
  *
  * @package brightCSS
  */
- 
 ini_set('display_errors', TRUE);
 error_reporting(E_ALL & ~E_STRICT);
 

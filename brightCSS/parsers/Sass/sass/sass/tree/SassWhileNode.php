@@ -1,5 +1,5 @@
 <?php
-/* SVN FILE: $Id: SassWhileNode.php 106 2010-08-29 11:11:49Z chris.l.yates@gmail.com $ */
+/* SVN FILE: $Id: SassWhileNode.php 118 2010-09-21 09:45:11Z chris.l.yates@gmail.com $ */
 /**
  * SassWhileNode class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
@@ -52,10 +52,10 @@ class SassWhileNode extends SassNode {
 		if ($this->isDo) {
 			do {
 				$children = array_merge($children, $this->parseChildren($context));
-			} while ($this->evaluate($this->expression, $context)->boolean);
+			} while ($this->evaluate($this->expression, $context)->toBoolean());
 		}
 		else {
-			while ($this->evaluate($this->expression, $context)->boolean) {
+			while ($this->evaluate($this->expression, $context)->toBoolean()) {
 				$children = array_merge($children, $this->parseChildren($context));
 			}
 		}

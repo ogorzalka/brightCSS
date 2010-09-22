@@ -1,5 +1,5 @@
 <?php
-/* SVN FILE: $Id: SassIfNode.php 106 2010-08-29 11:11:49Z chris.l.yates@gmail.com $ */
+/* SVN FILE: $Id: SassIfNode.php 118 2010-09-21 09:45:11Z chris.l.yates@gmail.com $ */
 /**
  * SassIfNode class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
@@ -72,7 +72,7 @@ class SassIfNode extends SassNode {
 	 * @return array parsed child nodes
 	 */
 	public function parse($context) {
-		if ($this->isElse() || $this->evaluate($this->expression, $context)->boolean) {
+		if ($this->isElse() || $this->evaluate($this->expression, $context)->toBoolean()) {
 			$children = $this->parseChildren($context);
 		}
 		elseif (!empty($this->else)) {

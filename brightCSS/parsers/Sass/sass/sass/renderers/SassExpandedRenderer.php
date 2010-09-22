@@ -1,5 +1,5 @@
 <?php
-/* SVN FILE: $Id: SassExpandedRenderer.php 106 2010-08-29 11:11:49Z chris.l.yates@gmail.com $ */
+/* SVN FILE: $Id: SassExpandedRenderer.php 118 2010-09-21 09:45:11Z chris.l.yates@gmail.com $ */
 /**
  * SassExpandedRenderer class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
@@ -37,27 +37,6 @@ class SassExpandedRenderer extends SassCompactRenderer {
 	}
 
 	/**
-	 * Returns the indent string for the node
-	 * @param SassNode the node to return the indent string for
-	 * @return string the indent string for this SassNode
-	 */
-	protected function getIndent($node) {
-		if ($node instanceof SassRuleNode) {
-			return ($node->inDirective() ? self::INDENT : '');
-		}
-		if ($node instanceof SassPropertyNode) {
-			return self::INDENT . ($node->inDirective() ? self::INDENT : '');
-		}
-		elseif ($node instanceof SassCommentNode && 
-				$node->parent instanceof SassRuleNode) {
-			return self::INDENT . $this->getIndent($node->parent);
-		}
-		else {
-			return '';
-		}
-	}
-
-	/**
 	 * Renders a comment.
 	 * @param SassNode the node being rendered
 	 * @return string the rendered commnt
@@ -76,7 +55,8 @@ class SassExpandedRenderer extends SassCompactRenderer {
 	 * @param array properties to render
 	 * @return string the rendered properties
 	 */
-	public function renderProperties($properties) {
-		return join("\n", $properties);
+	public function renderProperties($node, $properties) {
+		$indent = $this->getIndent($node).self::INDENT;
+		return $indent.join("\n$indent", $properties);
 	}
 }

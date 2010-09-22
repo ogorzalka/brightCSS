@@ -1,5 +1,5 @@
 <?php
-/* SVN FILE: $Id: SassCompressedRenderer.php 106 2010-08-29 11:11:49Z chris.l.yates@gmail.com $ */
+/* SVN FILE: $Id: SassCompressedRenderer.php 118 2010-09-21 09:45:11Z chris.l.yates@gmail.com $ */
 /**
  * SassCompressedRenderer class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
@@ -58,15 +58,16 @@ class SassCompressedRenderer extends SassRenderer {
 	 * @return string the rendered directive
 	 */
 	public function renderDirective($node, $properties) {
-		return $node->directive . $this->between() . $this->renderProperties($properties) . $this->end();
+		return $node->directive . $this->between() . $this->renderProperties($node, $properties) . $this->end();
 	}
 
 	/**
 	 * Renders properties.
+	 * @param SassNode the node being rendered
 	 * @param array properties to render
 	 * @return string the rendered properties
 	 */
-	public function renderProperties($properties) {
+	public function renderProperties($node, $properties) {
 		return join('', $properties);
 	}
 
@@ -76,7 +77,7 @@ class SassCompressedRenderer extends SassRenderer {
 	 * @return string the rendered property
 	 */
 	public function renderProperty($node) {
-		return $this->getIndent($node) . "{$node->name}: {$node->value};";
+		return "{$node->name}:{$node->value};";
 	}
 
 	/**
@@ -87,7 +88,7 @@ class SassCompressedRenderer extends SassRenderer {
 	 * @return string the rendered directive
 	 */
 	public function renderRule($node, $properties, $rules) {
-		return (!empty($properties) ? $this->renderSelectors($node) . $this->between() . $this->renderProperties($properties) . $this->end() : '') . $rules;
+		return (!empty($properties) ? $this->renderSelectors($node) . $this->between() . $this->renderProperties($node, $properties) . $this->end() : '') . $rules;
 	}
 
 	/**

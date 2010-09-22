@@ -1,5 +1,5 @@
 <?php
-/* SVN FILE: $Id: SassCompactRenderer.php 106 2010-08-29 11:11:49Z chris.l.yates@gmail.com $ */
+/* SVN FILE: $Id: SassCompactRenderer.php 118 2010-09-21 09:45:11Z chris.l.yates@gmail.com $ */
 /**
  * SassCompactRenderer class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
@@ -40,15 +40,6 @@ class SassCompactRenderer extends SassCompressedRenderer {
 	}
 
 	/**
-	 * Returns the indent string for the node
-	 * @param SassNode the node to return the indent string for
-	 * @return string the indent string for this SassNode
-	 */
-	protected function getIndent($node) {
-		return '';
-	} 
-
-	/**
 	 * Renders a comment.
 	 * Comments preceeding a rule are on their own line.
 	 * Comments within a rule are on the same line as the rule.
@@ -73,10 +64,11 @@ class SassCompactRenderer extends SassCompressedRenderer {
 
 	/**
 	 * Renders properties.
+	 * @param SassNode the node being rendered
 	 * @param array properties to render
 	 * @return string the rendered properties
 	 */
-	public function renderProperties($properties) {
+	public function renderProperties($node, $properties) {
 		return join(' ', $properties);
 	}
 
@@ -86,7 +78,7 @@ class SassCompactRenderer extends SassCompressedRenderer {
 	 * @return string the rendered property
 	 */
 	public function renderProperty($node) {
-		return $this->getIndent($node)."{$node->name}: {$node->value};";
+		return "{$node->name}: {$node->value};";
 	}
 
 	/**

@@ -1,5 +1,5 @@
 <?php
-/* SVN FILE: $Id: SassContext.php 106 2010-08-29 11:11:49Z chris.l.yates@gmail.com $ */
+/* SVN FILE: $Id: SassContext.php 118 2010-09-21 09:45:11Z chris.l.yates@gmail.com $ */
 /**
  * SassContext class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
@@ -100,7 +100,7 @@ class SassContext {
 	/**
 	 * Sets a variable to the given value
 	 * @param string name of variable
-	 * @param string value of variable
+	 * @param sassLiteral value of variable
 	 */
 	public function setVariable($name, $value) {
 		$this->variables[$name] = $value;

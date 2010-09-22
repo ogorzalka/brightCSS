@@ -1,5 +1,5 @@
 <?php
-/* SVN FILE: $Id: SassDirectiveNode.php 106 2010-08-29 11:11:49Z chris.l.yates@gmail.com $ */
+/* SVN FILE: $Id: SassDirectiveNode.php 118 2010-09-21 09:45:11Z chris.l.yates@gmail.com $ */
 /**
  * SassDirectiveNode class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
@@ -26,6 +26,10 @@ class SassDirectiveNode extends SassNode {
 	 */
 	public function __construct($token) {
 		parent::__construct($token);
+	}
+	
+	protected function getDirective() {
+		return self::extractDirective($this->token);
 	}
 
 	/**
@@ -65,7 +69,7 @@ class SassDirectiveNode extends SassNode {
 	 * @param object token
 	 * @return string the directive
 	 */
-	public static function getDirective($token) {
+	public static function extractDirective($token) {
 		preg_match(self::MATCH, $token->source, $matches);
 	  return strtolower($matches[1]);
 	}

@@ -1,5 +1,5 @@
 <?php
-/* SVN FILE: $Id: SassNode.php 106 2010-08-29 11:11:49Z chris.l.yates@gmail.com $ */
+/* SVN FILE: $Id: SassNode.php 118 2010-09-21 09:45:11Z chris.l.yates@gmail.com $ */
 /**
  * SassNode class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
@@ -292,9 +292,9 @@ class SassNode {
 	 * @param SassContext the context in which the expression is evaluated
 	 * @return SassLiteral value of parsed expression
 	 */
-	protected function evaluate($expression, $context) {
+	protected function evaluate($expression, $context, $x=null) {
 		$context->node = $this;
-		return $this->script->evaluate($expression, $context);
+		return $this->script->evaluate($expression, $context, $x);
 	}
 
 	/**

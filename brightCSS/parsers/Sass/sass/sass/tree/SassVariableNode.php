@@ -1,5 +1,5 @@
 <?php
-/* SVN FILE: $Id: SassVariableNode.php 106 2010-08-29 11:11:49Z chris.l.yates@gmail.com $ */
+/* SVN FILE: $Id: SassVariableNode.php 118 2010-09-21 09:45:11Z chris.l.yates@gmail.com $ */
 /**
  * SassVariableNode class file.
  * @author			Chris Yates <chris.l.yates@gmail.com>
@@ -16,7 +16,7 @@
  * @subpackage	Sass.tree
  */
 class SassVariableNode extends SassNode {
-	const MATCH = '/^([!$])([\w-]+):?\s*((\|\|)?=)?\s*(.+?)\s*(!default)?;?$/i';
+	const MATCH = '/^([!$])([\w-]+)\s*:?\s*((\|\|)?=)?\s*(.+?)\s*(!default)?;?$/i';
 	const IDENTIFIER = 1;
 	const NAME = 2;
 	const SASS_ASSIGNMENT = 3;
@@ -72,7 +72,8 @@ class SassVariableNode extends SassNode {
 	public function parse($context) {
 		if (!$this->isDefault || !$context->hasVariable($this->name)) {
 				$context->setVariable(
-					$this->name, $this->evaluate($this->value, $context)->toString());
+					$this->name, $this->evaluate($this->value, $context)
+				);
 		}		
 		$this->parseChildren($context); // Parse any warnings
 		return array();

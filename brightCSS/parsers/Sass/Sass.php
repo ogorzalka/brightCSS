@@ -29,6 +29,11 @@ class Sass
 		$options = array(
 			'filename' => Less::$css->file,
 			'debug_info' => false,
+			'load_paths' => array(
+				dirname(Less::$css->file),
+				dirname(__FILE__).'/../../mixins/scss',
+				dirname(__FILE__).'/../../mixins/sass'
+			),
 			'line_numbers'	 => false,
 			'vendor_properties' => true,
 			'property_syntax' => 'new',

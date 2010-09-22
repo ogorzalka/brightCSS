@@ -1,5 +1,5 @@
 <?php
-/* SVN FILE: $Id: SassForNode.php 106 2010-08-29 11:11:49Z chris.l.yates@gmail.com $ */
+/* SVN FILE: $Id: SassForNode.php 118 2010-09-21 09:45:11Z chris.l.yates@gmail.com $ */
 /**
  * SassForNode class file.
  * This is an enhanced version of the standard SassScript @for loop that adds
@@ -91,7 +91,7 @@ class SassForNode extends SassNode {
 
 		$context = new SassContext($context);
 		for ($i = $from; ($from < $to ? $i < $to : $i > $to); $i = $i + $step) {
-			$context->setVariable($this->variable, $i);
+			$context->setVariable($this->variable, new SassNumber($i));
 			$children = array_merge($children, $this->parseChildren($context));
 		}
 		return $children;
